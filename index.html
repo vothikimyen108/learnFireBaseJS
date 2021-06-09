@@ -14,7 +14,7 @@
     <br>
     <button id="btInsert">Insert</button>
     <button id="btUpdate"> upadte</button>
-    <button id="btSelect"> Selext</button>
+    <button id="btSelect"> Select</button>
     <button id ="btDelete">delete</button>
 </body>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -46,6 +46,7 @@
     age = document.getElementById("ageBox").value;
     phone = document.getElementById("phoneBox").value;
   }
+//   create student
   document.getElementById("btInsert").onclick = function() {
       ready();
     firebase.database().ref("sudent/"+id).set({
@@ -54,6 +55,15 @@
         AgeOfStudent:age,
         PhoneofStudent:phone
     })
+  }
+  // select srudent
+  document.getElementById("btSelect").onclick = function() {
+      ready();
+    firebase.database().ref("sudent/"+id).on('value',function(snapshot){
+        name = document.getElementById("nameBox").value =snapshot.val().NamofStudent;
+        age = document.getElementById("ageBox").value = snapshot.val().AgeOfStudent;
+        phone = document.getElementById("phoneBox").value = snapshot.val().PhoneofStudent;
+    });
   }
 </script>
 </html>
