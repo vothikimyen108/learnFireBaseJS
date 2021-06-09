@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     id <input type="text" id="idBox"><br>
     name <input type="text" id="nameBox"><br>
@@ -13,9 +15,9 @@
     phone<input type="text" id="phoneBox"><br>
     <br>
     <button id="btInsert">Insert</button>
-    <button id="btUpdate"> upadte</button>
+    <button id="btUpdate"> update</button>
     <button id="btSelect"> Select</button>
-    <button id ="btDelete">delete</button>
+    <button id="btDelete">delete</button>
 </body>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
@@ -27,52 +29,58 @@
 
 <script id="Mainscript">
 
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyB_oYkP3sH0odcojExjD6aZm-MBV1MFFB4",
-    authDomain: "blogtest-6cb7a.firebaseapp.com",
-    projectId: "blogtest-6cb7a",
-    storageBucket: "blogtest-6cb7a.appspot.com",
-    messagingSenderId: "195490018144",
-    appId: "1:195490018144:web:c33ccda15b2a37a6f4a405"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyB_oYkP3sH0odcojExjD6aZm-MBV1MFFB4",
+        authDomain: "blogtest-6cb7a.firebaseapp.com",
+        projectId: "blogtest-6cb7a",
+        storageBucket: "blogtest-6cb7a.appspot.com",
+        messagingSenderId: "195490018144",
+        appId: "1:195490018144:web:c33ccda15b2a37a6f4a405"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
- var id, name, age, phone;
-  function ready() {
-    id = document.getElementById("idBox").value;
-    name = document.getElementById("nameBox").value;
-    age = document.getElementById("ageBox").value;
-    phone = document.getElementById("phoneBox").value;
-  }
-//   create student
-  document.getElementById("btInsert").onclick = function() {
-      ready();
-    firebase.database().ref("sudent/"+id).set({
-        id:id,
-        NamofStudent:name,
-        AgeOfStudent:age,
-        PhoneofStudent:phone
-    })
-  }
-  // select srudent
-  document.getElementById("btSelect").onclick = function() {
-      ready();
-    firebase.database().ref("sudent/"+id).on('value',function(snapshot){
-        name = document.getElementById("nameBox").value =snapshot.val().NamofStudent;
-        age = document.getElementById("ageBox").value = snapshot.val().AgeOfStudent;
-        phone = document.getElementById("phoneBox").value = snapshot.val().PhoneofStudent;
-    });
-  }
+    var id, name, age, phone;
+    function ready() {
+        id = document.getElementById("idBox").value;
+        name = document.getElementById("nameBox").value;
+        age = document.getElementById("ageBox").value;
+        phone = document.getElementById("phoneBox").value;
+    }
+    //   create student
+    document.getElementById("btInsert").onclick = function () {
+        ready();
+        firebase.database().ref("sudent/" + id).set({
+            id: id,
+            NamofStudent: name,
+            AgeOfStudent: age,
+            PhoneofStudent: phone
+        })
+    }
+    // select srudent
+    document.getElementById("btSelect").onclick = function () {
+        ready();
+        firebase.database().ref("sudent/" + id).on('value', function (snapshot) {
+            name = document.getElementById("nameBox").value = snapshot.val().NamofStudent;
+            age = document.getElementById("ageBox").value = snapshot.val().AgeOfStudent;
+            phone = document.getElementById("phoneBox").value = snapshot.val().PhoneofStudent;
+        });
+    }
     // update srudent
-    document.getElementById("btSelect").onclick = function() {
-      ready();
-    firebase.database().ref("sudent/"+id).update({
-        NamofStudent:name,
-        AgeOfStudent:age,
-        PhoneofStudent:phone
-    });
-  }
+    document.getElementById("btUpdate").onclick = function () {
+        ready();
+        firebase.database().ref("sudent/" + id).update({
+            NamofStudent: name,
+            AgeOfStudent: age,
+            PhoneofStudent: phone
+        });
+    }
+  //remove
+    document.getElementById("btDelete").onclick = function () {
+        ready();
+        firebase.database().ref("sudent/" + id).remove();
+    }
 </script>
+
 </html>
