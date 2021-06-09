@@ -65,13 +65,13 @@
         phone = document.getElementById("phoneBox").value = snapshot.val().PhoneofStudent;
     });
   }
-    // select srudent
+    // update srudent
     document.getElementById("btSelect").onclick = function() {
       ready();
-    firebase.database().ref("sudent/"+id).on('value',function(snapshot){
-        name = document.getElementById("nameBox").value =snapshot.val().NamofStudent;
-        age = document.getElementById("ageBox").value = snapshot.val().AgeOfStudent;
-        phone = document.getElementById("phoneBox").value = snapshot.val().PhoneofStudent;
+    firebase.database().ref("sudent/"+id).update({
+        NamofStudent:name,
+        AgeOfStudent:age,
+        PhoneofStudent:phone
     });
   }
 </script>
